@@ -1,0 +1,89 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with Clang",
+            "type": "shell",
+            "command": "clang++-9", //根据版本号填写
+            "args": [
+                "-std=c++17",
+                "-stdlib=libc++",
+                "-pthread",
+                "-Wall",
+                "-fuse-ld=lld", 
+                "*.cpp",
+                "-o",
+                "Build/${fileBasenameNoExtension}",
+                "--debug"
+                //"-lstdc++fs"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared",
+                "focus": false,
+                "echo": true,
+                "clear": true
+            },
+            "problemMatcher": [
+                //"$gcc"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "Mkdir",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "Build"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Run programme",
+            "command": "Build/${fileBasenameNoExtension}",
+            "args": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build And Run",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Mkdir",
+                "Build with Clang",
+                "Run programme"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                //"$gcc"
+            ]
+        }
+    ]
+}

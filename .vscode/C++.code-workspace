@@ -1,0 +1,91 @@
+{
+	"folders": [
+		{
+			"uri": "vscode-remote://wsl+ubuntu/mnt/d/数据结构"
+		},
+	],
+	"remoteAuthority": "wsl+Ubuntu",
+	"settings": {		
+		"code-runner.runInTerminal": true, // 在终端中运行编译命令，否则我们无法与程序通过标准输入交互
+		"code-runner.clearPreviousOutput": true, // 运行代码之前清除之前的输出
+		"code-runner.fileDirectoryAsCwd": true, // 开启这个后在运行编译命令之前会自动 cd 至文件所在目录
+		"code-runner.executorMap": {
+			"c": "mkdir -p Build; clang *.c  -fmessage-length=0 -Wall -o $dir/Build/$fileNameWithoutExt; ./Build/$fileNameWithoutExt",
+			"cpp": "mkdir -p Build; clang++ *.cpp -std=c++17 -fmessage-length=0 -Wall -o $dir/Build/$fileNameWithoutExt -lstdc++fs; ./Build/$fileNameWithoutExt",
+		},
+		"code-runner.preserveFocus": false, // 运行代码后切换焦点至终端，方便直接输入测试数据       
+		"code-runner.saveFileBeforeRun": true,
+		"files.autoSave": "afterDelay",
+		"terminal.integrated.cursorBlinking": true,
+		"terminal.integrated.cursorStyle": "line",
+		"files.eol": "\n", //默认换行符
+		"files.associations": {
+			"*.h": "cpp",
+			"iostream": "cpp",
+			"string_view": "cpp",
+			"ostream": "cpp",
+			"array": "cpp",
+			"atomic": "cpp",
+			"*.tcc": "cpp",
+			"cctype": "cpp",
+			"chrono": "cpp",
+			"clocale": "cpp",
+			"cmath": "cpp",
+			"codecvt": "cpp",
+			"condition_variable": "cpp",
+			"cstdarg": "cpp",
+			"cstddef": "cpp",
+			"cstdint": "cpp",
+			"cstdio": "cpp",
+			"cstdlib": "cpp",
+			"ctime": "cpp",
+			"cwchar": "cpp",
+			"cwctype": "cpp",
+			"deque": "cpp",
+			"unordered_map": "cpp",
+			"vector": "cpp",
+			"exception": "cpp",
+			"algorithm": "cpp",
+			"filesystem": "cpp",
+			"functional": "cpp",
+			"iterator": "cpp",
+			"memory": "cpp",
+			"memory_resource": "cpp",
+			"numeric": "cpp",
+			"optional": "cpp",
+			"random": "cpp",
+			"ratio": "cpp",
+			"string": "cpp",
+			"system_error": "cpp",
+			"tuple": "cpp",
+			"type_traits": "cpp",
+			"utility": "cpp",
+			"fstream": "cpp",
+			"initializer_list": "cpp",
+			"iomanip": "cpp",
+			"iosfwd": "cpp",
+			"istream": "cpp",
+			"limits": "cpp",
+			"mutex": "cpp",
+			"new": "cpp",
+			"sstream": "cpp",
+			"stdexcept": "cpp",
+			"streambuf": "cpp",
+			"thread": "cpp",
+			"typeinfo": "cpp"
+		},
+		"C_Cpp.default.name": "Linux",
+		"C_Cpp.default.includePath": [ //包含的头文件路径
+			"${fileDirname}"
+		],
+		"C_Cpp.default.defines": [],
+		"C_Cpp.default.compilerPath": "/usr/bin/clang++-9", //根据clang版本号填写
+		"C_Cpp.default.cStandard": "c11",
+		"C_Cpp.default.cppStandard": "c++17",
+		"C_Cpp.default.intelliSenseMode": "clang-x64",
+		"C_Cpp.clang_format_fallbackStyle": "WebKit",//格式化模式
+		
+		"clangd.path": "clangd-9",
+		"clangd.arguments": ["--fallback-style=WebKit","--pretty","--log=verbose","--background-index","--clang-tidy"]
+	},
+}
