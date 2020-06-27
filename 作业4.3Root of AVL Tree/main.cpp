@@ -23,6 +23,7 @@ private:
                         temp->right->right = tree;
                         tree = temp->right;
                         temp->right = tree->left;
+                        tree->left=temp;
                     } else { //LL旋转
                         struct Node* temp = tree->left;
                         tree->left = temp->right;
@@ -39,6 +40,7 @@ private:
                         temp->left->left = tree;
                         tree = temp->left;
                         temp->left = tree->right;
+                        tree->right=temp;
                     } else { //RR旋转
                         struct Node* temp = tree->right;
                         tree->right = temp->left;
@@ -55,7 +57,7 @@ private:
         if (tree == NULL) {
             return 0;
         } else {
-            return std::max(getHeight(tree->left) + 1, getHeight(tree->right) + 1);
+            return std::max(getHeight(tree->left) , getHeight(tree->right) )+1;
         }
     }
 
@@ -67,8 +69,8 @@ public:
         struct Node* root = nullptr;
         int temp;
         for (int i = 0; i < n; i++) {
-            //cin >> temp;
-            root = insert(i, root);
+            cin >> temp;
+            root = insert(temp, root);
             //cout << "insert complete!\n"; //check point
             //cout << root->data << endl; //check point
         }

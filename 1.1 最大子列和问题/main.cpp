@@ -93,10 +93,10 @@ int main()
 {
     int A[100]{ 4, -3, 5, -2, -1, 2, 6, -2, -1, 22 };
     int n = 8;
-    auto start = std::chrono::high_resolution_clock::now(); //开始计时
+    //auto start = std::chrono::high_resolution_clock::now(); //开始计时
     cout << MaxSubseqSum4(A, n) << endl;
-    auto end = std::chrono::high_resolution_clock::now(); //结束计时
+    //auto end = std::chrono::high_resolution_clock::now(); //结束计时
     std::chrono::duration<double, std::milli> elapsed = end - start; //计算时间差
-    cout << "time cost: " << elapsed.count() << " ms\n";
+    //cout << "time cost: " << elapsed.count() << " ms\n";
     return 0;
 }
