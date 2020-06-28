@@ -9,13 +9,13 @@
             "name": "clang++ build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/mnt/d/数据结构/作业 3.1 树的同构/Build/main",
+            "program": "Build/${fileBasenameNoExtension}",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb",
+            "MIMode": "gdb",
             //"logging": {
                 //"trace": true,
                 //"traceResponse": true,
@@ -29,7 +29,7 @@
                 }
             ],
             //"preLaunchTask": "Build with Clang",
-            "miDebuggerPath": "/usr/bin/lldb-mi-9"
+            "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
 }
