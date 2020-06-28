@@ -13,7 +13,7 @@
                 "-fuse-ld=lld", 
                 "*.cpp",
                 "-o",
-                "Build/${fileBasenameNoExtension}",
+                "Build/${fileBasenameNoExtension}.out",
                 "--debug"
                 //"-lstdc++fs"
             ],
@@ -54,7 +54,7 @@
         {
             "type": "shell",
             "label": "Run programme",
-            "command": "Build/${fileBasenameNoExtension}",
+            "command": "Build/${fileBasenameNoExtension}.out",
             "args": [],
             "presentation": {
                 "echo": true,
