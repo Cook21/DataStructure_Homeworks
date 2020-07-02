@@ -5,7 +5,7 @@
 		},
 	],
 	"remoteAuthority": "wsl+Ubuntu",
-	"settings": {		
+	"settings": {
 		"code-runner.runInTerminal": true, // 在终端中运行编译命令，否则我们无法与程序通过标准输入交互
 		"code-runner.clearPreviousOutput": true, // 运行代码之前清除之前的输出
 		"code-runner.fileDirectoryAsCwd": true, // 开启这个后在运行编译命令之前会自动 cd 至文件所在目录
@@ -83,9 +83,17 @@
 		"C_Cpp.default.cStandard": "c11",
 		"C_Cpp.default.cppStandard": "c++17",
 		"C_Cpp.default.intelliSenseMode": "clang-x64",
-		"C_Cpp.clang_format_fallbackStyle": "WebKit",//格式化模式
-		
+		"C_Cpp.clang_format_fallbackStyle": "WebKit", //格式化模式
+		"C_Cpp.intelliSenseEngine": "Disabled",
+		"C_Cpp.autocomplete": "Disabled", // So you don't get autocomplete from both extensions.
+		"C_Cpp.errorSquiggles": "Disabled",
 		"clangd.path": "clangd-9",
-		"clangd.arguments": ["--fallback-style=WebKit","--pretty","--log=verbose","--background-index","--clang-tidy"]
+		"clangd.arguments": [
+			"--fallback-style=WebKit",
+			"--pretty",
+			"--log=verbose",
+			"--background-index",
+			"--clang-tidy"
+		]
 	},
 }
