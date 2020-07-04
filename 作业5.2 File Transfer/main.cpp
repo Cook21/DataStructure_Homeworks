@@ -9,62 +9,58 @@ using std::string;
 using std::vector;
 class setTree {
 public:
-    int data;
-    int parent = -1;
-    static vector<setTree> table;
-    int find(int a)
+    vector<int> parentOf;
+    setTree(int size)
     {
-        for (int i = 0; i < table.size(); i++) {
-            if (table[i].data == a) {
-                int root;
-                for (root=i; table[root].parent >= 0; root = table[root].parent)
-                    ;
-                return root;
-            }
+        parentOf = vector<int>(size, -1);
+    }
+    int findRoot(int currNode)
+    {
+        while (parentOf[currNode] >= 0) {
+            currNode = parentOf[currNode];
         }
-        return -1;
+        return currNode;
     }
     void connect(int a, int b)
     {
-        int rootOfa = find(a);
-        int rootOfb = find(b);
-        if (table[rootOfa].parent < table[rootOfb].parent) { //a所属集合的元素较多
-            table[rootOfa].parent += table[rootOfb].parent;
-            table[rootOfb].parent = rootOfa;
+        int rootOfa = findRoot(a);
+        int rootOfb = findRoot(b);
+        if (parentOf[rootOfa] < parentOf[rootOfb]) { //a所属集合的元素较多
+            parentOf[rootOfa] += parentOf[rootOfb];
+            parentOf[rootOfb] = rootOfa;
         } else {
-            table[rootOfb].parent += table[rootOfa].parent;
-            table[rootOfa].parent = rootOfb;
+            parentOf[rootOfb] += parentOf[rootOfa];
+            parentOf[rootOfa] = rootOfb;
         }
     }
     int numOfComponents()
     {
         int numOfComponents = 0;
-        for (auto i : setTree::table) {
-            if (i.parent < 0) {
-                numOfComponents++;
+        for (auto i : parentOf) {
+            //cout << i << " ";
+            if (i < 0) {
+                numOfComponents ++;
             }
         }
+        //cout << endl;
         return numOfComponents;
     }
 };
-vector<setTree> setTree::table {};
+
 int main()
 {
     int numOfNodes;
     cin >> numOfNodes;
-    for (int i = 1; i <= numOfNodes; i++) {
-        setTree::table.push_back(setTree { i });
-    }
-    setTree set {};
+    setTree set { numOfNodes };
     string op {};
     std::stringstream out {};
     for (cin >> op; op != "S"; cin >> op) {
         int a, b;
         cin >> a >> b;
         if (op == "I") {
-            set.connect(a, b);
+            set.connect(a - 1, b - 1);
         } else if (op == "C") {
-            if (set.find(a) == set.find(b)) {
+            if (set.findRoot(a - 1) == set.findRoot(b - 1)) {
                 out << "yes" << endl;
             } else {
                 out << "no" << endl;

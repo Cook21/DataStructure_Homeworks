@@ -17,14 +17,14 @@ using std::vector;
 
 class BinaryEncodeTree {
 public:
-    char character = '0'; //代表无内容
+    char character = '*'; //代表无内容
     int frequency = 0;
     BinaryEncodeTree* left = nullptr;
     BinaryEncodeTree* right = nullptr;
     int insert(char character, int frequency, string code)
     { //0表示成功
 
-        if (this->character != '0') {
+        if (this->character != '*') {
             return -1;
         }
         BinaryEncodeTree** next;
@@ -49,15 +49,15 @@ public:
             return (**next).insert(character, frequency, code);
         }
     }
-    bool operator>=(const BinaryEncodeTree& tree) const
+    bool operator>(const BinaryEncodeTree& tree) const
     {
-        return frequency >= tree.frequency;
+        return frequency > tree.frequency;
     }
     int pathLength(int currDepth = 0)
     {
 
         int result = 0;
-        if (character != '0') {
+        if (character != '*') {
             result = currDepth * frequency;
         } else {
             if (left != nullptr) {
@@ -72,7 +72,7 @@ public:
 };
 bool greater(const BinaryEncodeTree& t1, const BinaryEncodeTree& t2)
 {
-    return t1 >= t2;
+    return t1 > t2;
 }
 BinaryEncodeTree buildHuffmanTree(vector<BinaryEncodeTree> allTree)
 {
