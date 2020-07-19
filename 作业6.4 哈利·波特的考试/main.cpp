@@ -90,12 +90,21 @@ public:
                     thisLineMax=minDistance(i, j);
                 }
             }
+            if(thisLineMax==posInfinity){
+                minLine=-1;
+                break;
+            }
             if(thisLineMax<min){
                 minLine=i;
                 min=thisLineMax;
             }
         }
-        cout << minLine+1 << ' ' << min;
+        if(minLine!=-1){
+            cout << minLine+1 << ' ' << min;
+        }else{
+            cout << 0;
+        }
+        
     }
 };
 const int Graph::posInfinity = 10000;
