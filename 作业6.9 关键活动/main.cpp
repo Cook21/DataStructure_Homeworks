@@ -45,20 +45,20 @@ public:
     int TopSort()
     {
         earliestCompletionTime = vector<int>(adjacencyTable.size(), posInfinity);
-        deque<NodeID> inDegreeEqualsZero {};
+        deque<NodeID> queue {};
         for (NodeID i = 0; i < inDegree.size(); i++) {
             if (inDegree[i] == 0) {
                 earliestCompletionTime[i] = 0;
-                inDegreeEqualsZero.push_back(i);
+                queue.push_back(i);
             }
         }
-        
-        while (inDegreeEqualsZero.size() != 0) {
-            NodeID currNode = inDegreeEqualsZero.front();
-            inDegreeEqualsZero.pop_front();
+
+        while (queue.size() != 0) {
+            NodeID currNode = queue.front();
+            queue.pop_front();
             for (auto neighbour : adjacencyTable[currNode]) {
                 if (--inDegree[neighbour.nodeID] == 0) {
-                    inDegreeEqualsZero.push_back(neighbour.nodeID);
+                    queue.push_back(neighbour.nodeID);
                 }
                 if (earliestCompletionTime[currNode] + neighbour.cost > earliestCompletionTime[neighbour.nodeID] || earliestCompletionTime[neighbour.nodeID] == posInfinity) {
                     earliestCompletionTime[neighbour.nodeID] = earliestCompletionTime[currNode] + neighbour.cost;
