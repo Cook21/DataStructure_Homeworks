@@ -60,6 +60,14 @@ private:
             return std::max(getHeight(tree->left) , getHeight(tree->right) )+1;
         }
     }
+    void preTraversal(struct Node* tree)
+    {
+        if (tree != nullptr) {
+            cout << tree->data << ' ';
+            preTraversal(tree->left);
+            preTraversal(tree->right);
+        }
+    }
 
 public:
     void getInput()
@@ -75,9 +83,11 @@ public:
             //cout << root->data << endl; //check point
         }
         if (root) {
-            cout << root->data;
+            cout << root->data << endl;
         }
+        preTraversal(root);
     }
+    
 };
 int main()
 {
