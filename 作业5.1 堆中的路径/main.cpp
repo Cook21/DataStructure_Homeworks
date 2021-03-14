@@ -7,8 +7,9 @@ using std::vector;
 class MinHeap {
 public:
     vector<int> tree {};
-    void sort(int root){
-        int temp=tree[root];
+    void sort(int root)
+    {
+        int temp = tree[root];
         int curr = root;
         while (1) {
             int child = curr * 2 + 1;
@@ -27,10 +28,11 @@ public:
         }
         tree[curr] = temp;
     }
-    void initialize(vector<int> unsorted){
-        tree=unsorted;
-        int currTree=(tree.size()-1)/2;
-        while(currTree!=-1){
+    void initialize(vector<int> unsorted)
+    {
+        tree = unsorted;
+        int currTree = (tree.size() - 2) / 2;
+        while (currTree != -1) {
             sort(currTree);
             currTree--;
         }
@@ -38,12 +40,12 @@ public:
     void push(int data)
     {
         tree.push_back(data);
-        int curr = tree.size()-1;
-        int parent = (curr-1) / 2;
+        int curr = tree.size() - 1;
+        int parent = (curr - 1) / 2;
         while (curr > 0 && tree[parent] > data) {
             tree[curr] = tree[parent];
             curr = parent;
-            parent = (curr-1) / 2;
+            parent = (curr - 1) / 2;
         }
         tree[curr] = data;
     }
@@ -59,12 +61,13 @@ public:
     {
         cout << tree[start];
         while (start != 0) {
-            start =(start-1)/2;
+            start = (start - 1) / 2;
             cout << ' ' << tree[start];
         }
     }
-    void levelOrderTraversel(){
-        for(auto i : tree){
+    void levelOrderTraversel()
+    {
+        for (auto i : tree) {
             cout << i << " ";
         }
         cout << endl;
@@ -74,7 +77,7 @@ int main()
 {
     int numOfElement, numOfTraversel;
     cin >> numOfElement >> numOfTraversel;
-    MinHeap minHeap{};
+    MinHeap minHeap {};
     //vector<int> input{};
     for (int i = 0; i < numOfElement; i++) {
         int temp;
